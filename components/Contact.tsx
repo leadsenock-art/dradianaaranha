@@ -1,88 +1,78 @@
 import React from 'react';
 import { CONTACT_INFO, MAP_EMBED_URL } from '../constants';
-import { MapPin, Phone, Mail, Clock } from 'lucide-react';
+import { MapPin, Phone, Mail, Clock, ArrowRight } from 'lucide-react';
 import Button from './Button';
 
 const Contact: React.FC = () => {
   return (
-    <section id="contato" className="py-16 md:py-24 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16">
-          
-          {/* Info Column */}
-          <div className="order-2 lg:order-1">
-            <h2 className="font-serif text-3xl md:text-4xl font-bold text-secondary-900 mb-6 md:mb-8">
-              Entre em Contato
+    <section id="contato" className="py-0 bg-secondary-900 relative">
+      <div className="flex flex-col lg:flex-row h-full">
+        
+        {/* Info Column */}
+        <div className="w-full lg:w-1/3 bg-secondary-900 text-white p-12 lg:p-20 flex flex-col justify-center relative z-10">
+          <div className="reveal-on-scroll">
+            <span className="text-primary-500 font-bold tracking-[0.2em] uppercase text-xs mb-6 block">Fale Conosco</span>
+            <h2 className="font-serif text-4xl lg:text-5xl font-medium mb-10 leading-tight">
+              Agende sua <br/> <span className="text-primary-400">Avaliação</span>
             </h2>
-            <p className="text-gray-600 mb-8 md:mb-10 text-base md:text-lg">
-              Estamos prontos para atender você com exclusividade. Agende sua avaliação e descubra o poder do seu melhor sorriso.
-            </p>
 
-            <div className="space-y-6 md:space-y-8">
-              <div className="flex items-start">
-                <div className="bg-primary-50 p-3 rounded-lg text-primary-600 mr-4 flex-shrink-0">
+            <div className="space-y-10">
+              <div className="flex items-start group">
+                <div className="p-0 text-primary-500 mr-6 mt-1 group-hover:text-white transition-colors">
                   <MapPin size={24} />
                 </div>
                 <div>
-                  <h4 className="font-bold text-gray-900 mb-1">Localização</h4>
-                  <p className="text-gray-600 text-sm md:text-base">{CONTACT_INFO.address}</p>
+                  <h4 className="font-bold text-white mb-2 text-sm uppercase tracking-wider">Endereço</h4>
+                  <p className="text-gray-400 text-sm leading-relaxed max-w-xs">{CONTACT_INFO.address}</p>
                 </div>
               </div>
 
-              <div className="flex items-start">
-                <div className="bg-primary-50 p-3 rounded-lg text-primary-600 mr-4 flex-shrink-0">
+              <div className="flex items-start group">
+                <div className="p-0 text-primary-500 mr-6 mt-1 group-hover:text-white transition-colors">
                   <Phone size={24} />
                 </div>
                 <div>
-                  <h4 className="font-bold text-gray-900 mb-1">Telefones</h4>
-                  <p className="text-gray-600 block text-sm md:text-base">{CONTACT_INFO.phone}</p>
-                  <p className="text-gray-600 block text-sm md:text-base">{CONTACT_INFO.whatsapp} (WhatsApp)</p>
+                  <h4 className="font-bold text-white mb-2 text-sm uppercase tracking-wider">Contato</h4>
+                  <p className="text-gray-400 text-sm block mb-1 hover:text-white transition-colors cursor-pointer">{CONTACT_INFO.phone}</p>
+                  <p className="text-gray-400 text-sm block hover:text-white transition-colors cursor-pointer">{CONTACT_INFO.whatsapp}</p>
                 </div>
               </div>
 
-              <div className="flex items-start">
-                <div className="bg-primary-50 p-3 rounded-lg text-primary-600 mr-4 flex-shrink-0">
-                  <Mail size={24} />
-                </div>
-                <div>
-                  <h4 className="font-bold text-gray-900 mb-1">Email</h4>
-                  <p className="text-gray-600 text-sm md:text-base">{CONTACT_INFO.email}</p>
-                </div>
-              </div>
-              
-              <div className="flex items-start">
-                <div className="bg-primary-50 p-3 rounded-lg text-primary-600 mr-4 flex-shrink-0">
+              <div className="flex items-start group">
+                <div className="p-0 text-primary-500 mr-6 mt-1 group-hover:text-white transition-colors">
                   <Clock size={24} />
                 </div>
                 <div>
-                  <h4 className="font-bold text-gray-900 mb-1">Horário de Atendimento</h4>
-                  <p className="text-gray-600 text-sm md:text-base">Segunda a Sexta: 08h às 19h</p>
+                  <h4 className="font-bold text-white mb-2 text-sm uppercase tracking-wider">Horário</h4>
+                  <p className="text-gray-400 text-sm">Seg - Sex: 08h às 19h</p>
                 </div>
               </div>
             </div>
 
-            <div className="mt-8 md:mt-10">
+            <div className="mt-16">
               <Button fullWidth onClick={() => window.open(`https://wa.me/${CONTACT_INFO.whatsapp.replace(/\D/g,'')}`)}>
-                Agendar via WhatsApp
+                Iniciar Conversa <ArrowRight size={16} className="ml-2" />
               </Button>
             </div>
           </div>
-
-          {/* Map Column */}
-          <div className="order-1 lg:order-2 h-80 md:h-[500px] w-full bg-gray-200 rounded-2xl md:rounded-3xl overflow-hidden shadow-lg border border-gray-100">
-            <iframe 
-              src={MAP_EMBED_URL} 
-              width="100%" 
-              height="100%" 
-              style={{ border: 0 }} 
-              allowFullScreen={true} 
-              loading="lazy" 
-              referrerPolicy="no-referrer-when-downgrade"
-              title="Localização da Clínica"
-            ></iframe>
-          </div>
-
         </div>
+
+        {/* Map Column */}
+        <div className="w-full lg:w-2/3 h-[400px] lg:h-auto min-h-[500px] relative">
+          <div className="absolute inset-0 bg-gray-900/20 pointer-events-none z-10"></div>
+          <iframe 
+            src={MAP_EMBED_URL} 
+            width="100%" 
+            height="100%" 
+            style={{ border: 0, filter: 'grayscale(100%) contrast(1.2)' }} 
+            allowFullScreen={true} 
+            loading="lazy" 
+            referrerPolicy="no-referrer-when-downgrade"
+            title="Localização da Clínica"
+            className="w-full h-full"
+          ></iframe>
+        </div>
+
       </div>
     </section>
   );

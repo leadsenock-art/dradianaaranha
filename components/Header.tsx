@@ -16,38 +16,44 @@ const Header: React.FC = () => {
   }, []);
 
   return (
-    <header className={`fixed top-0 w-full z-50 transition-all duration-300 ${isScrolled || isOpen ? 'bg-white/95 backdrop-blur-md shadow-sm py-2' : 'bg-transparent py-4'}`}>
+    <header className={`fixed top-0 w-full z-50 transition-all duration-500 ease-in-out ${isScrolled || isOpen ? 'bg-white/80 backdrop-blur-lg shadow-glass py-2 border-b border-gray-100/50' : 'bg-transparent py-4'}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
           
           {/* Logo */}
-          <div className="flex-shrink-0 flex items-center cursor-pointer" onClick={() => window.scrollTo(0,0)}>
+          <div className="flex-shrink-0 flex items-center cursor-pointer transition-transform hover:scale-105 duration-300" onClick={() => window.scrollTo(0,0)}>
              <img 
                src="https://i.imgur.com/kEgd02E.png" 
                alt={SITE_NAME} 
-               className="h-10 sm:h-12 md:h-16 w-auto object-contain" 
+               className="h-10 sm:h-12 md:h-14 w-auto object-contain" 
              />
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex space-x-8">
+          <nav className="hidden md:flex space-x-10">
             {NAV_ITEMS.map((item) => (
               <a
                 key={item.label}
                 href={item.href}
-                className={`text-sm font-medium hover:text-primary-600 transition-colors ${isScrolled ? 'text-gray-700' : 'text-gray-800'}`}
+                className="relative text-sm font-medium uppercase tracking-wide text-gray-700 hover:text-primary-600 transition-colors group py-2"
               >
                 {item.label}
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary-600 transition-all duration-300 group-hover:w-full"></span>
               </a>
             ))}
           </nav>
 
           {/* Desktop Actions */}
           <div className="hidden md:flex items-center space-x-4">
-            <a href={`https://instagram.com/${CONTACT_INFO.instagram}`} target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-pink-600 transition-colors">
+            <a 
+              href={`https://instagram.com/${CONTACT_INFO.instagram}`} 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="text-gray-400 hover:text-primary-600 transition-colors transform hover:rotate-6 duration-300"
+            >
               <Instagram size={20} />
             </a>
-            <Button variant="primary" className="!px-6 !py-2 !text-sm" onClick={() => window.open(`https://wa.me/${CONTACT_INFO.whatsapp.replace(/\D/g,'')}`)}>
+            <Button variant="primary" className="!px-6 !py-2 !text-xs" onClick={() => window.open(`https://wa.me/${CONTACT_INFO.whatsapp.replace(/\D/g,'')}`)}>
               Agendar
             </Button>
           </div>
@@ -56,7 +62,7 @@ const Header: React.FC = () => {
           <div className="md:hidden flex items-center">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="text-gray-700 hover:text-primary-600 p-2 focus:outline-none"
+              className="text-gray-700 hover:text-primary-600 p-2 focus:outline-none transition-transform duration-300 active:scale-90"
               aria-label="Toggle menu"
             >
               {isOpen ? <X size={24} /> : <Menu size={24} />}
@@ -66,31 +72,29 @@ const Header: React.FC = () => {
       </div>
 
       {/* Mobile Menu Dropdown */}
-      {isOpen && (
-        <div className="md:hidden bg-white border-t border-gray-100 absolute w-full shadow-lg max-h-[calc(100vh-80px)] overflow-y-auto">
-          <div className="px-4 pt-4 pb-6 space-y-2">
-            {NAV_ITEMS.map((item) => (
-              <a
-                key={item.label}
-                href={item.href}
-                className="block px-3 py-3 rounded-md text-base font-medium text-gray-700 hover:text-primary-600 hover:bg-gray-50 border-b border-gray-50 last:border-0"
-                onClick={() => setIsOpen(false)}
-              >
-                {item.label}
-              </a>
-            ))}
-            <div className="pt-6 px-1">
-              <Button fullWidth onClick={() => window.open(`https://wa.me/${CONTACT_INFO.whatsapp.replace(/\D/g,'')}`)}>
-                Agendar Consulta
-              </Button>
-            </div>
-            <div className="flex justify-center space-x-8 pt-8 pb-4 text-gray-400">
-               <a href={`https://instagram.com/${CONTACT_INFO.instagram}`} className="hover:text-pink-600"><Instagram size={28} /></a>
-               <a href={`tel:${CONTACT_INFO.phone}`} className="hover:text-primary-600"><Phone size={28} /></a>
-            </div>
+      <div className={`md:hidden absolute w-full bg-white/95 backdrop-blur-xl border-b border-gray-200 shadow-xl transition-all duration-500 ease-in-out overflow-hidden ${isOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'}`}>
+        <div className="px-6 pt-4 pb-8 space-y-4">
+          {NAV_ITEMS.map((item) => (
+            <a
+              key={item.label}
+              href={item.href}
+              className="block px-4 py-3 rounded-lg text-lg font-medium text-gray-800 hover:text-primary-600 hover:bg-primary-50 transition-all border-l-2 border-transparent hover:border-primary-600"
+              onClick={() => setIsOpen(false)}
+            >
+              {item.label}
+            </a>
+          ))}
+          <div className="pt-6 border-t border-gray-100">
+            <Button fullWidth onClick={() => window.open(`https://wa.me/${CONTACT_INFO.whatsapp.replace(/\D/g,'')}`)}>
+              Agendar Consulta
+            </Button>
+          </div>
+          <div className="flex justify-center space-x-8 pt-4 text-gray-400">
+              <a href={`https://instagram.com/${CONTACT_INFO.instagram}`} className="hover:text-primary-600 transition-colors"><Instagram size={24} /></a>
+              <a href={`tel:${CONTACT_INFO.phone}`} className="hover:text-primary-600 transition-colors"><Phone size={24} /></a>
           </div>
         </div>
-      )}
+      </div>
     </header>
   );
 };
