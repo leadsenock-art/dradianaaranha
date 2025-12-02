@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dra. Diana Aranha | Odontologia Estética</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+      :root {
+        /* --- Paleta Extraída / Design Tokens --- */
+        
+        /* Cor Principal: Antique Gold / Bronze (#968157) */
+        /* Substituindo os tons de Azul/Teal */
+        --color-primary-50: #fbf9f5;  /* Very light warm cream */
+        --color-primary-100: #f2ede0; /* Light warm beige */
+        --color-primary-500: #a89266; /* Lighter gold for icons/highlights */
+        --color-primary-600: #968157; /* Brand Base Color - REQUESTED */
+        --color-primary-700: #7d6b46; /* Darker for hover states */
+        --color-primary-900: #423824; /* Deep brown/bronze for dark details */
+
+        /* Cor Secundária: Typography & Neutral Elements */
+        --color-secondary-900: #1f2937; /* Slate Gray (Mantido para legibilidade e contraste) */
+        
+        /* Acento: Gold (Mantido para compatibilidade, agora harmoniza com a primária) */
+        --color-accent: #d4af37; 
+        
+        /* Fundos */
+        --color-bg-body: #ffffff;
+        --color-bg-soft: #faf9f6; /* Soft warm gray/beige */
+      }
+
+      html { scroll-behavior: smooth; }
+      body { 
+        -webkit-font-smoothing: antialiased; 
+        -moz-osx-font-smoothing: grayscale; 
+        background-color: var(--color-bg-body);
+        color: var(--color-secondary-900);
+      }
+    </style>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+              serif: ['Playfair Display', 'serif'],
+            },
+            colors: {
+              // Mapping Tailwind utilities to CSS Variables
+              primary: {
+                50: 'var(--color-primary-50)',
+                100: 'var(--color-primary-100)',
+                500: 'var(--color-primary-500)',
+                600: 'var(--color-primary-600)',
+                700: 'var(--color-primary-700)',
+                900: 'var(--color-primary-900)',
+              },
+              secondary: {
+                900: 'var(--color-secondary-900)',
+              },
+              accent: {
+                DEFAULT: 'var(--color-accent)',
+              }
+            }
+          }
+        }
+      }
+    </script>
+  <script type="importmap">
+{
+  "imports": {
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.555.0"
+  }
+}
+</script>
+</head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>
