@@ -58,11 +58,11 @@
         background: var(--color-primary-600); 
       }
 
-      /* Animation Utilities */
+      /* Animation Utilities - Default state handled by React to avoid flashing */
       .reveal-on-scroll {
         opacity: 0;
         transform: translateY(30px);
-        transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        transition: all 1s cubic-bezier(0.5, 0, 0, 1);
       }
       .reveal-on-scroll.visible {
         opacity: 1;
@@ -72,7 +72,7 @@
       .reveal-scale {
         opacity: 0;
         transform: scale(0.95);
-        transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        transition: all 1s cubic-bezier(0.5, 0, 0, 1);
       }
       .reveal-scale.visible {
         opacity: 1;
@@ -142,28 +142,5 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/index.tsx"></script>
-    
-    <!-- Animation Script -->
-    <script>
-      document.addEventListener('DOMContentLoaded', () => {
-        const observerOptions = {
-          root: null,
-          rootMargin: '0px',
-          threshold: 0.1
-        };
-
-        const observer = new IntersectionObserver((entries, observer) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('visible');
-              observer.unobserve(entry.target); // Run once
-            }
-          });
-        }, observerOptions);
-
-        const animatedElements = document.querySelectorAll('.reveal-on-scroll, .reveal-scale');
-        animatedElements.forEach(el => observer.observe(el));
-      });
-    </script>
   </body>
 </html>

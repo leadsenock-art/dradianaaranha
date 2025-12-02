@@ -16,21 +16,21 @@ const Header: React.FC = () => {
   }, []);
 
   return (
-    <header className={`fixed top-0 w-full z-50 transition-all duration-500 ease-in-out ${isScrolled || isOpen ? 'bg-white/80 backdrop-blur-lg shadow-glass py-2 border-b border-gray-100/50' : 'bg-transparent py-4'}`}>
+    <header className={`fixed top-0 w-full z-50 transition-all duration-500 ease-in-out ${isScrolled || isOpen ? 'bg-white/90 backdrop-blur-md shadow-sm border-b border-gray-100' : 'bg-transparent py-4'}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center">
+        <div className="flex justify-between items-center h-20">
           
           {/* Logo */}
           <div className="flex-shrink-0 flex items-center cursor-pointer transition-transform hover:scale-105 duration-300" onClick={() => window.scrollTo(0,0)}>
              <img 
                src="https://i.imgur.com/kEgd02E.png" 
                alt={SITE_NAME} 
-               className="h-10 sm:h-12 md:h-14 w-auto object-contain" 
+               className="h-10 sm:h-12 w-auto object-contain" 
              />
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex space-x-10">
+          <nav className="hidden md:flex space-x-8 lg:space-x-10">
             {NAV_ITEMS.map((item) => (
               <a
                 key={item.label}
@@ -72,19 +72,19 @@ const Header: React.FC = () => {
       </div>
 
       {/* Mobile Menu Dropdown */}
-      <div className={`md:hidden absolute w-full bg-white/95 backdrop-blur-xl border-b border-gray-200 shadow-xl transition-all duration-500 ease-in-out overflow-hidden ${isOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'}`}>
-        <div className="px-6 pt-4 pb-8 space-y-4">
+      <div className={`md:hidden absolute w-full bg-white border-b border-gray-100 shadow-xl transition-all duration-300 ease-in-out overflow-hidden ${isOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'}`}>
+        <div className="px-6 py-8 space-y-4">
           {NAV_ITEMS.map((item) => (
             <a
               key={item.label}
               href={item.href}
-              className="block px-4 py-3 rounded-lg text-lg font-medium text-gray-800 hover:text-primary-600 hover:bg-primary-50 transition-all border-l-2 border-transparent hover:border-primary-600"
+              className="block text-lg font-medium text-gray-800 hover:text-primary-600 py-2 border-l-4 border-transparent hover:border-primary-600 pl-4 transition-all"
               onClick={() => setIsOpen(false)}
             >
               {item.label}
             </a>
           ))}
-          <div className="pt-6 border-t border-gray-100">
+          <div className="pt-6 border-t border-gray-100 mt-4">
             <Button fullWidth onClick={() => window.open(`https://wa.me/${CONTACT_INFO.whatsapp.replace(/\D/g,'')}`)}>
               Agendar Consulta
             </Button>
